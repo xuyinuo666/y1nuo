@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    nacos:
+      server-addr: 119.3.75.204:8848
+      username: nacos
+      password: nacos
+

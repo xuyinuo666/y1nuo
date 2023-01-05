@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: oauth2
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://119.3.75.204:3306/st?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+    username: root
+    password: Aa112211
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    auto-mapping-behavior: full
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath*:mapper/*Mapper.xml
+server:
+  port: 8001
+auth:
+  token:
+    alias: jwt
+    jwtFileName: jwt.jks
+    jwtPassword: 123456789
+  white-list:
+    - "/rsa/publicKey" # 获取公钥
