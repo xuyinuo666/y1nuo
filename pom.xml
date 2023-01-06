@@ -12,6 +12,8 @@
         <module>gateway</module>
         <module>base</module>
         <module>oauth</module>
+        <module>order</module>
+        <module>user</module>
     </modules>
 
     <parent>
