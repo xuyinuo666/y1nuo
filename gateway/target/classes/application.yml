@@ -1,5 +1,5 @@
 server:
-  port: 8888
+  port: 80
 
 # 如果路由方式是serviceId的方式，那么ribbon的生效，如果是url的方式，则zuul.host开头的生效
 ribbon:
@@ -98,6 +98,4 @@ secure:
     - /favicon.ico
     - /**/*App/**
   need-check:
-    - "/**/*Api/**"
-    - "/*Api/**"
     - "/api/**"

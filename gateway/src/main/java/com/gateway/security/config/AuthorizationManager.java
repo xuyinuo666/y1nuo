@@ -1,7 +1,6 @@
 package com.gateway.security.config;
 
 import com.gateway.security.constant.AuthConstant;
-import com.gateway.security.vo.PermissionVo;
 import com.redis.util.RedisUtils;
 import constant.RedisCst;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +13,7 @@ import org.springframework.security.web.server.authorization.AuthorizationContex
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 import reactor.core.publisher.Mono;
+import vo.PermissionVo;
 
 import javax.annotation.Resource;
 import java.net.URI;
@@ -51,8 +51,7 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
                         return false;
                     }
                     for (PermissionVo permissionVo : permissionVos) {
-                        String systemModule = StringUtils.isBlank(permissionVo.getSystemModule()) ? "" : "/" + permissionVo.getSystemModule();
-                        String sourceURI = systemModule + permissionVo.getUrl();
+                        String sourceURI =  permissionVo.getUrl();
                         log.info("===>>> sourceURI:{}", sourceURI);
                         if (antPathMatcher.match(sourceURI, targetURI)) {
                             return true;

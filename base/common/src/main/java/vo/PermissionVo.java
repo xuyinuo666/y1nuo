@@ -1,4 +1,4 @@
-package com.gateway.security.vo;
+package vo;
 
 import lombok.Data;
 
@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @create 2019-07-16 14:33
  */
 @Data
-public class PermissionVo  implements Serializable {
+public class PermissionVo implements Serializable {
 
     private Long id;
     //权限名称
