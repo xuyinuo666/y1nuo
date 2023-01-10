@@ -14,6 +14,8 @@
         <module>oauth</module>
         <module>order</module>
         <module>user</module>
+        <module>product</module>
+        <module>base/system</module>
     </modules>
 
     <parent>

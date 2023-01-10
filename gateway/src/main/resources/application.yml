@@ -1,5 +1,5 @@
 server:
-  port: 80
+  port: 8888
 
 # 如果路由方式是serviceId的方式，那么ribbon的生效，如果是url的方式，则zuul.host开头的生效
 ribbon:
@@ -31,13 +31,27 @@ spring:
           # 加上StripPrefix=1，否则转发到后端服务时会带上consumer前缀
           filters:
             - StripPrefix=1
-        - id: user-order
+        - id: order
           # lb代表从注册中心获取服务，且已负载均衡方式转发
           uri: lb://order
           predicates:
             - Path=/api/order/**
           filters:
-            - StripPrefix=2
+            - StripPrefix=1
+        - id: user
+          # lb代表从注册中心获取服务，且已负载均衡方式转发
+          uri: lb://user
+          predicates:
+            - Path=/api/user/**
+          filters:
+            - StripPrefix=1
+        - id: user
+          # lb代表从注册中心获取服务，且已负载均衡方式转发
+          uri: lb://product
+          predicates:
+            - Path=/api/product/**
+          filters:
+            - StripPrefix=1
 #        - id: admin-user
 #          # lb代表从注册中心获取服务，且已负载均衡方式转发
 #          uri: lb://learn-shop-admin-user
