@@ -1,14 +1,19 @@
 package com.order.controller;
 
 
+import com.order.bo.OrderBo;
+import com.order.bo.ProductBo;
+import com.order.service.IOmsOrderService;
 import com.system.userInfo.entity.UserInfo;
 import com.system.userInfo.utils.UserInfoContext;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
 import res.BaseResponse;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <p>
@@ -21,9 +26,19 @@ import res.BaseResponse;
 @RestController
 @RequestMapping("/order")
 public class OmsOrderController {
+    @Resource
+    private IOmsOrderService omsOrderService;
     @PostMapping("/test")
-    public BaseResponse test(){
-        UserInfo user = UserInfoContext.getUser();
+    public BaseResponse test() {
+//        UserInfo user = UserInfoContext.getUser();
+        int a = 10 /0;
         return BaseResponse.success("111");
     }
+
+    @PostMapping("/addOrder")
+    public BaseResponse addOrder(@RequestBody OrderBo orderBo) {
+        omsOrderService.addOrder(orderBo);
+        return BaseResponse.success("111");
+    }
+
 }

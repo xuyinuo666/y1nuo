@@ -1,5 +1,6 @@
 package com.order.service;
 
+import com.order.bo.OrderBo;
 import com.order.entity.OmsOrder;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -12,5 +13,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2023-01-10
  */
 public interface IOmsOrderService extends IService<OmsOrder> {
+    boolean checkOrderApprove(OrderBo orderBo);
 
+    boolean addOrder(OrderBo orderBo);
 }

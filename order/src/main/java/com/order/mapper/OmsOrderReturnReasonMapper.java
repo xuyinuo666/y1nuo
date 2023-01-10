@@ -2,6 +2,7 @@ package com.order.mapper;
 
 import com.order.entity.OmsOrderReturnReason;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author y1nuo
  * @since 2023-01-10
  */
+@Mapper
 public interface OmsOrderReturnReasonMapper extends BaseMapper<OmsOrderReturnReason> {
 
 }

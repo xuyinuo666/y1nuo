@@ -1,11 +1,13 @@
 package enums;
 
+import res.ResponseCodeInterface;
+
 import java.util.Objects;
 
 /**
  * 状态码
  */
-public enum ResCodeEnum {
+public enum ResCodeEnum implements ResponseCodeInterface {
 
     /**
      * "0000", "成功"
@@ -175,5 +177,15 @@ public enum ResCodeEnum {
 
     public void setStatusCode(String statusCode) {
         this.statusCode = statusCode;
+    }
+
+    @Override
+    public String getCode() {
+        return statusCode;
+    }
+
+    @Override
+    public String getMsg() {
+        return statusName;
     }
 }
