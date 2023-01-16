@@ -1,16 +1,17 @@
 package com.order.openfeign;
-import com.alibaba.fastjson.JSONObject;
-import com.order.po.ProductPo;
+import com.order.openfeign.hystrix.ProductHystrix;
+import com.system.dto.PmsGoodsSpuDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import res.BaseResponse;
 
 import java.util.List;
 
-@FeignClient(value = "product",path = "/product")
+@FeignClient(value = "product",fallback = ProductHystrix.class)
 public interface ProductFeign {
-    @GetMapping("/getProductInfoByIdList")
-    List<JSONObject> getProductInfoByIdList(@RequestParam List<Long> productIdList);
+    @GetMapping("/product/getProductInfoByIdList")
+    BaseResponse getProductInfoByIdList(@RequestParam List<Long> productIdList);
 
 
 }

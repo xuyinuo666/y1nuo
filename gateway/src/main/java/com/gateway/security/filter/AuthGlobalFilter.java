@@ -39,6 +39,7 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
         return chain.filter(exchange);
     }
 

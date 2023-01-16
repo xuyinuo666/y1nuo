@@ -1,4 +1,4 @@
-package utils;
+package com.system.utils;
 
 /**
  * Twitter_Snowflake<br>
@@ -140,19 +140,5 @@ public class SnowflakeIdWorker {
             timestamp = getCurrentTimeStamp();
         }
         return timestamp;
-    }
-
-
-    /**
-     * 测试
-     */
-    public static void main(String[] args) {
-        SnowflakeIdWorker idWorker = new SnowflakeIdWorker(1, 2);
-
-        for (int i = 0; i < 10; i++) {
-            long id = idWorker.nextId();
-            //System.out.println(Long.toBinaryString(id));
-            System.out.println(id);
-        }
     }
 }

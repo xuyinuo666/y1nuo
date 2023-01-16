@@ -11,6 +11,42 @@ spring:
   redis:
     host: 119.3.75.204
     port: 6379
+  cloud:
+    stream:
+      binders:
+        defaultRabbit:
+          type: rabbit
+      bindings:
+        saveOrderOutPut:
+          destination: saveOrderExchange
+          content-type: application/json
+          binder: defaultRabbit
+          group: saveOrderGroup
+        saveOrderInput:
+          destination: saveOrderExchange
+          content-type: application/json
+          binder: defaultRabbit
+          group: saveOrderGroup
+      rabbit:
+        bindings:
+          saveOrderOutput:
+            producer:
+              confirmAckChannel: true
+              delayed-exchange: true
+          saveOrderInput:
+            consumer:
+              acknowledge-mode: manual
+              auto-bind-dlq: true
+              dlq-dead-letter-exchange: saveOrderDeadExChange
+              dead-letter-queue-name: saveOrderDeadQueue
+              delayed-exchange: true
+
+
+
+  rabbitmq:
+    addresses: 119.3.75.204
+    username: root
+    password: Aa112211
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
@@ -20,3 +56,25 @@ mybatis-plus:
 snowflake:
   machine-id: 1
   data-center-id: 1
+feign:
+  hystrix:
+    enabled: true
+# hystrix 配置
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: SEMAPHORE
+          thread:
+            timeoutInMilliseconds:  1200000	#超时时间，单位ms，默认为1000
+          semaphore:
+            maxConcurrentRequests: 300000	#最大并发请求量，默认10
+      circuitBreaker:
+        requestVolumeThreshold: 10 #触发熔断的最小请求次数，默认20
+        errorThresholdPercentage: 10000 #触发熔断的失败请求最小占比，默认50%
+        sleepWindowInMilliseconds:  100000 #触发熔断后的服务休眠时长，休眠结束服务接口将再次启用，默认是5000毫秒
+  shareSecurityContext: true
+
+
+

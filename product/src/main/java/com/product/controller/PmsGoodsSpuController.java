@@ -4,10 +4,9 @@ package com.product.controller;
 import com.product.po.PmsGoodsSpuPo;
 import com.product.service.IPmsGoodsSpuService;
 import com.product.vo.PmsGoodsSpuVo;
+import com.system.dto.PmsGoodsSpuDto;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import res.BaseResponse;
@@ -39,7 +38,8 @@ public class PmsGoodsSpuController {
     @GetMapping("/getProductInfoByIdList")
     public BaseResponse getProductInfoByIdList(@RequestParam List<Long> productIdList){
         List<PmsGoodsSpuPo> allSpu = spuService.getProductInfoByIdList(productIdList);
-        List<PmsGoodsSpuVo> goodsSpuVos = ConvertUtils.convert(allSpu, PmsGoodsSpuVo.class);
+        List<PmsGoodsSpuDto> goodsSpuVos = ConvertUtils.convert(allSpu, PmsGoodsSpuDto.class);
+        int a = 1/ 0;
         return BaseResponse.success(goodsSpuVos);
     }
 }

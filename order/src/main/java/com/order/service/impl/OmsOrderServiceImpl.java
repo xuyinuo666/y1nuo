@@ -1,15 +1,14 @@
 package com.order.service.impl;
 
-import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.order.bo.OrderBo;
 import com.order.bo.ProductBo;
 import com.order.entity.OmsOrder;
 import com.order.mapper.OmsOrderMapper;
 import com.order.openfeign.ProductFeign;
-import com.order.po.ProductPo;
 import com.order.service.IOmsOrderService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import res.BaseResponse;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -30,7 +29,7 @@ public class OmsOrderServiceImpl extends ServiceImpl<OmsOrderMapper, OmsOrder> i
     @Override
     public boolean checkOrderApprove(OrderBo orderBo) {
         List<Long> prodIds = orderBo.getProductBoList().stream().map(ProductBo::getProductId).collect(Collectors.toList());
-        List<JSONObject> productPos = productFeign.getProductInfoByIdList(prodIds);
+        BaseResponse productPos = productFeign.getProductInfoByIdList(prodIds);
         return true;
     }
 

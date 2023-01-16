@@ -15,6 +15,7 @@
         <module>common</module>
         <module>redis</module>
         <module>mybatis</module>
+        <module>aop</module>
     </modules>
 
     <properties>

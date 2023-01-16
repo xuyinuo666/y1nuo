@@ -7,6 +7,7 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,12 +18,15 @@ import java.util.Map;
 public class JwtTokenEnhancer implements TokenEnhancer {
     @Override
     public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
+        DefaultOAuth2AccessToken defaultOAuth2AccessToken = new DefaultOAuth2AccessToken(accessToken);
+
+        defaultOAuth2AccessToken.setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24));
         SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
         Map<String, Object> info = new HashMap<>();
         //把用户ID设置到JWT中
-        info.put("id", securityUser.getId());
+            info.put("id", securityUser.getId());
         info.put("usercode",securityUser.getUsercode());
-        ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(info);
-        return accessToken;
+//        defaultOAuth2AccessToken.setAdditionalInformation(info);
+        return defaultOAuth2AccessToken;
     }
 }
