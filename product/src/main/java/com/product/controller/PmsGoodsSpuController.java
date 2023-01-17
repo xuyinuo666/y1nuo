@@ -1,19 +1,23 @@
 package com.product.controller;
 
 
-import com.product.po.PmsGoodsSpuPo;
+import cn.hutool.core.date.LocalDateTimeUtil;
+import com.alibaba.fastjson.JSONObject;
+import com.product.bo.PmsGoodsSpuBo;
 import com.product.service.IPmsGoodsSpuService;
 import com.product.vo.PmsGoodsSpuVo;
-import com.system.dto.PmsGoodsSpuDto;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.web.bind.annotation.*;
 import res.BaseResponse;
 import utils.ConvertUtils;
 
 import javax.annotation.Resource;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * <p>
@@ -27,19 +31,30 @@ import java.util.List;
 @RequestMapping("/product")
 public class PmsGoodsSpuController {
     @Resource
+    private ThreadPoolTaskExecutor taskExecutor;
+    @Resource
     private IPmsGoodsSpuService spuService;
+
+    @Resource
+    private RedissonClient redissonClient;
+
     @GetMapping("/getAllSpuByBrandId")
-    public BaseResponse getAllSpuBySkuNo(@RequestParam Long brandId){
-        List<PmsGoodsSpuPo> allSpu = spuService.getAllSpuByBrandId(brandId);
+    public BaseResponse getAllSpuBySkuNo(@RequestParam Long brandId) {
+        List<PmsGoodsSpuBo> allSpu = spuService.getAllSpuByBrandId(brandId);
         List<PmsGoodsSpuVo> goodsSpuVos = ConvertUtils.convert(allSpu, PmsGoodsSpuVo.class);
         return BaseResponse.success(goodsSpuVos);
     }
 
     @GetMapping("/getProductInfoByIdList")
-    public BaseResponse getProductInfoByIdList(@RequestParam List<Long> productIdList){
-        List<PmsGoodsSpuPo> allSpu = spuService.getProductInfoByIdList(productIdList);
-        List<PmsGoodsSpuDto> goodsSpuVos = ConvertUtils.convert(allSpu, PmsGoodsSpuDto.class);
-        int a = 1/ 0;
+    public BaseResponse getProductInfoByIdList(@RequestParam List<Long> productIdList) {
+        List<PmsGoodsSpuBo> allSpu = spuService.getProductInfoByIdList(productIdList);
+        List<PmsGoodsSpuVo> goodsSpuVos = ConvertUtils.convert(allSpu, PmsGoodsSpuVo.class);
         return BaseResponse.success(goodsSpuVos);
+    }
+
+    @PostMapping("/decrementStock")
+    public BaseResponse<Boolean> decrementStock() {
+        spuService.decrementStock();
+        return BaseResponse.success(111);
     }
 }

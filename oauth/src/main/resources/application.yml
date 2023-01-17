@@ -25,3 +25,5 @@ auth:
     jwtPassword: 123456789
   white-list:
     - "/rsa/publicKey" # 获取公钥
+machine-id: 5
+data-center-id: 5

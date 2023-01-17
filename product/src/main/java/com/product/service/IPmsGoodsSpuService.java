@@ -1,8 +1,9 @@
 package com.product.service;
 
-import com.product.entity.PmsGoodsSpu;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.product.po.PmsGoodsSpuPo;
+import com.product.bo.PmsGoodsSpuBo;
+import com.product.entity.PmsGoodsSpu;
 
 import java.util.List;
 
@@ -15,7 +16,9 @@ import java.util.List;
  * @since 2023-01-10
  */
 public interface IPmsGoodsSpuService extends IService<PmsGoodsSpu> {
-    List<PmsGoodsSpuPo> getAllSpuByBrandId(Long brandId);
+    List<PmsGoodsSpuBo> getAllSpuByBrandId(Long brandId);
 
-    List<PmsGoodsSpuPo> getProductInfoByIdList(List<Long> idList);
+    List<PmsGoodsSpuBo> getProductInfoByIdList(List<Long> idList);
+
+    Boolean decrementStock();
 }

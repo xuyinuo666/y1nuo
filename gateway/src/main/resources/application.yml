@@ -5,7 +5,6 @@ server:
 ribbon:
   ReadTimeout: 15000
   ConnectTimeout: 10000
-
 spring:
   application:
     name: gateway
@@ -113,3 +112,5 @@ secure:
     - /**/*App/**
   need-check:
     - "/api/**"
+machine-id: 4
+data-center-id: 4

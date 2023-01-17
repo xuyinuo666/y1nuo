@@ -14,7 +14,6 @@ import org.springframework.util.StringUtils;
 
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "spring.redisson")
 public class RedissonConfig {
 
     @Autowired
@@ -33,7 +32,7 @@ public class RedissonConfig {
     private int connectionPoolSize = 64;
     private int database = 0;
     private int dnsMonitoringInterval = 5000;
-    private int thread; // 当前处理核数量 * 2
+    private int thread = 8; // 当前处理核数量 * 2
 
 
     @Bean(destroyMethod = "shutdown")

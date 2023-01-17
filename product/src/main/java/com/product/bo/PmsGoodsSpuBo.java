@@ -1,4 +1,5 @@
-package com.system.dto;
+package com.product.bo;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -15,7 +16,7 @@ import java.time.LocalDateTime;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class PmsGoodsSpuDto implements Serializable {
+public class PmsGoodsSpuBo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

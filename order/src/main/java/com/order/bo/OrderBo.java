@@ -12,4 +12,6 @@ public class OrderBo  implements Serializable {
     private AddressBo addressBo;
 
     private List<ProductBo> productBoList;
+
+    private String uniqueId;
 }

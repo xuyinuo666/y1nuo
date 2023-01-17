@@ -70,6 +70,11 @@
             <artifactId>aop</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com</groupId>
+            <artifactId>redis</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
 
         <dependency>
             <groupId>com</groupId>

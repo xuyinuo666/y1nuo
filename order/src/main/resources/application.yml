@@ -53,9 +53,7 @@ mybatis-plus:
     auto-mapping-behavior: full
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: classpath*:mapper/*Mapper.xml
-snowflake:
-  machine-id: 1
-  data-center-id: 1
+
 feign:
   hystrix:
     enabled: true
@@ -75,6 +73,8 @@ hystrix:
         errorThresholdPercentage: 10000 #触发熔断的失败请求最小占比，默认50%
         sleepWindowInMilliseconds:  100000 #触发熔断后的服务休眠时长，休眠结束服务接口将再次启用，默认是5000毫秒
   shareSecurityContext: true
+machine-id: 1
+data-center-id: 1
 
 
 

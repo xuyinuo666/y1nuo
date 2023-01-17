@@ -35,8 +35,8 @@ public class OmsOrderController {
     }
 
     @PostMapping("/addOrder")
-    public BaseResponse addOrder(@RequestBody OrderBo orderBo) {
-        omsOrderService.addOrder(orderBo);
+    public BaseResponse addOrder() {
+        omsOrderService.addOrder("123456");
         return BaseResponse.success("111");
     }
 

@@ -16,6 +16,7 @@ public class GlobalExceptionController {
 
     @ExceptionHandler(RuntimeException.class)
     public BaseResponse runtime(RuntimeException businessException){
+        log.error("error",businessException.fillInStackTrace());
         log.error("系统错误，{}",businessException.getMessage(),businessException.getCause());
         return new BaseResponse("-1","系统异常！");
     }
