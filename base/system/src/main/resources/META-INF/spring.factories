@@ -1,5 +1,5 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.system.userInfo.filter.UserInfoFilter,\
 com.system.config.SystemConfig,\
-com.system.config.SystemConfig,\
+com.system.userInfo.interceptor.UserInfoReqInterceptor,\
 com.system.global.exception.GlobalExceptionController\
